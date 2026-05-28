@@ -3,6 +3,7 @@ import AppKit
 private let app = NSApplication.shared
 
 UserDefaultsMigration.migrateIfNeeded()
+Config.shared.resolveGestureFingerConflicts()
 
 let accessibilityMonitor = AccessibilityMonitor()
 

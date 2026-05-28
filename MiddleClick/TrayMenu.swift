@@ -4,7 +4,8 @@ import AppKit
 @MainActor final class TrayMenu: NSObject {
   private let config = Config.shared
   private var infoItem, tapToClickItem, accessibilityPermissionStatusItem, accessibilityPermissionActionItem, ignoredAppItem, launchAtLoginItem: NSMenuItem!
-  private var fingerCountControl: FingerCountControl!
+  private var middleClickFingerCountControl: FingerCountControl!
+  private var mediaPlayPauseFingerCountControl: FingerCountControl!
   private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
   var isStatusItemVisible: Bool {
     get { statusItem.isVisible }
@@ -28,6 +29,11 @@ import AppKit
         self.updateTapToClickStatus()
       }
     }
+    config.$mediaPlayPauseFingers.onSet {_ in
+      DispatchQueue.main.async {
+        self.updateTapToClickStatus()
+      }
+    }
   }
 
   #if DEBUG
@@ -45,9 +51,14 @@ import AppKit
   private func updateTapToClickStatus() {
     let tapToClick = config.tapToClick
     let clickModeInfo = "Click" + (tapToClick ? " or Tap" : "")
-    let fingersInfo = " with \(config.minimumFingers)\(config.allowMoreFingers ? "+" : "") Fingers"
+    let middleClickInfo = config.minimumFingers > 0
+      ? "\(clickModeInfo) with \(config.minimumFingers)\(config.allowMoreFingers ? "+" : "") Fingers"
+      : "Middle click Off"
+    let mediaInfo = config.mediaPlayPauseFingers > 0
+      ? "Play/Pause with \(config.mediaPlayPauseFingers) Fingers"
+      : "Play/Pause Off"
 
-    infoItem.title = clickModeInfo + fingersInfo
+    infoItem.title = middleClickInfo + " · " + mediaInfo
     tapToClickItem.state = tapToClick ? .on : .off
   }
 
@@ -303,31 +314,54 @@ extension TrayMenu {
 
 extension TrayMenu {
   private func addFingerCountItem(_ menu: NSMenu) {
-    fingerCountControl = FingerCountControl()
-    fingerCountControl.onValueChanged = { _ in
+    middleClickFingerCountControl = FingerCountControl(
+      title: "Middle click",
+      getValue: { self.config.minimumFingers },
+      setValue: { self.config.setMiddleClickFingers($0) }
+    )
+    middleClickFingerCountControl.onValueChanged = { _ in
       self.updateTapToClickStatus()
+      self.mediaPlayPauseFingerCountControl.refresh()
     }
 
-    let fingerCountItem = NSMenuItem()
-    fingerCountItem.view = fingerCountControl
-    menu.addItem(fingerCountItem)
+    let middleClickFingerCountItem = NSMenuItem()
+    middleClickFingerCountItem.view = middleClickFingerCountControl
+    menu.addItem(middleClickFingerCountItem)
+
+    mediaPlayPauseFingerCountControl = FingerCountControl(
+      title: "Play/Pause",
+      getValue: { self.config.mediaPlayPauseFingers },
+      setValue: { self.config.setMediaPlayPauseFingers($0) }
+    )
+    mediaPlayPauseFingerCountControl.onValueChanged = { _ in
+      self.updateTapToClickStatus()
+      self.middleClickFingerCountControl.refresh()
+    }
+
+    let mediaPlayPauseFingerCountItem = NSMenuItem()
+    mediaPlayPauseFingerCountItem.view = mediaPlayPauseFingerCountControl
+    menu.addItem(mediaPlayPauseFingerCountItem)
 
     let resetFingerCountItem = menu.addItem(
-      withTitle: "Reset Finger Count", action: #selector(resetFingerCount), target: self)
+      withTitle: "Reset Gesture Fingers", action: #selector(resetFingerCount), target: self)
     resetFingerCountItem.isAlternate = true
     resetFingerCountItem.keyEquivalentModifierMask = .option
   }
 
   @objc private func resetFingerCount() {
     config.$minimumFingers.delete()
-    fingerCountControl.refresh()
+    config.$mediaPlayPauseFingers.delete()
+    middleClickFingerCountControl.refresh()
+    mediaPlayPauseFingerCountControl.refresh()
   }
+
 }
 
 extension TrayMenu: NSMenuDelegate {
   func menuWillOpen(_ menu: NSMenu) {
     updateIgnoredAppItem()
-    fingerCountControl.refresh()
+    middleClickFingerCountControl.refresh()
+    mediaPlayPauseFingerCountControl.refresh()
   }
 
   private func updateIgnoredAppItem() {

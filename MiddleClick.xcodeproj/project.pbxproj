@@ -13,7 +13,7 @@
 
 /* Begin PBXFileReference section */
 		75A6B66B0FEE87AB0071FAC0 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = /System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<absolute>"; };
-		976CE1432D73BA00002D9FBB /* MiddleClick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiddleClick.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		976CE1432D73BA00002D9FBB /* MiddleClickPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiddleClickPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		976CE2042D73D0EC002D9FBB /* ConfigCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ConfigCore; sourceTree = "<group>"; };
 		97C3CD9E2D8231C000F24C4C /* MoreTouch */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoreTouch; sourceTree = "<group>"; };
 		97C91DE82D7B069700EEBDF1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		976CE1442D73BA00002D9FBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				976CE1432D73BA00002D9FBB /* MiddleClick.app */,
+				976CE1432D73BA00002D9FBB /* MiddleClickPlus.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 			name = MiddleClick;
 			productInstallPath = "$(HOME)/Applications";
 			productName = test;
-			productReference = 976CE1432D73BA00002D9FBB /* MiddleClick.app */;
+			productReference = 976CE1432D73BA00002D9FBB /* MiddleClickPlus.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -173,15 +173,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = MiddleClick/MiddleClick.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = R2294BC6J8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -193,7 +191,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MiddleClick;
+				INFOPLIST_KEY_CFBundleDisplayName = "MiddleClick+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2019-2025 Arthur Ginzburg";
@@ -202,8 +200,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_STDLIB_TOOL_FLAGS = "--source-libraries /dev/null";
-				PRODUCT_BUNDLE_IDENTIFIER = art.ginzburg.MiddleClick;
-				PRODUCT_NAME = MiddleClick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexander.MiddleClickPlus;
+				PRODUCT_NAME = MiddleClickPlus;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = macosx;
@@ -221,15 +219,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = MiddleClick/MiddleClick.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = R2294BC6J8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -239,7 +235,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MiddleClick;
+				INFOPLIST_KEY_CFBundleDisplayName = "MiddleClick+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2019-2025 Arthur Ginzburg";
@@ -248,8 +244,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_STDLIB_TOOL_FLAGS = "--source-libraries /dev/null";
-				PRODUCT_BUNDLE_IDENTIFIER = art.ginzburg.MiddleClick;
-				PRODUCT_NAME = MiddleClick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexander.MiddleClickPlus;
+				PRODUCT_NAME = MiddleClickPlus;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = macosx;

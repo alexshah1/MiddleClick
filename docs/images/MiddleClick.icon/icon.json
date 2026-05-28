@@ -4,9 +4,10 @@
     {
       "layers" : [
         {
-          "fill" : {
-            "solid" : "gray:1.00000,1.00000"
-          },
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "glass" : true,
+          "hidden" : false,
           "image-name" : "Fingers.svg",
           "name" : "Fingers"
         }
